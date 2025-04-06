@@ -12,6 +12,11 @@ export async function generateStaticParams() {
   ];
 }
 
-export default function Page({ params }: { params: { id: string } }) {
+interface Props {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
+export default async function Page({ params }: Props) {
   return <CryptoDetailClient />;
 } 

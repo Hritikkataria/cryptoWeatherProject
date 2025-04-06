@@ -12,6 +12,11 @@ export async function generateStaticParams() {
   ];
 }
 
-export default function Page({ params }: { params: { city: string } }) {
+interface Props {
+  params: { city: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
+export default async function Page({ params }: Props) {
   return <WeatherDetailClient />;
 } 

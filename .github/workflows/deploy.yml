@@ -27,8 +27,12 @@ jobs:
           NEXT_PUBLIC_COINGECKO_API_KEY: ${{ secrets.NEXT_PUBLIC_COINGECKO_API_KEY }}
           NEXT_PUBLIC_NEWSDATA_API_KEY: ${{ secrets.NEXT_PUBLIC_NEWSDATA_API_KEY }}
 
+      - name: Create .nojekyll file
+        run: touch out/.nojekyll
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: out
-          branch: gh-pages 
+          branch: gh-pages
+          clean: true 
