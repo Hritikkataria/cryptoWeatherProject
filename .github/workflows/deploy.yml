@@ -1,39 +1,36 @@
-name: Deploy to GitHub Pages
-
+name: Deploy to Vercel
 on:
   push:
     branches:
-      - main
+      - gh-pages
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-
+      - uses: actions/checkout@v4
+      
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
-
-      - name: Install dependencies
+          node-version: '20'
+          
+      - name: Install Dependencies
         run: npm install
-
-      - name: Build project
+        
+      - name: Build
         run: npm run build
         env:
           NEXT_PUBLIC_OPENWEATHER_API_KEY: ${{ secrets.NEXT_PUBLIC_OPENWEATHER_API_KEY }}
           NEXT_PUBLIC_COINGECKO_API_KEY: ${{ secrets.NEXT_PUBLIC_COINGECKO_API_KEY }}
           NEXT_PUBLIC_NEWSDATA_API_KEY: ${{ secrets.NEXT_PUBLIC_NEWSDATA_API_KEY }}
-
-      - name: Create .nojekyll file
-        run: touch out/.nojekyll
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+          
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
         with:
-          folder: out
-          branch: gh-pages
-          clean: true
-          base: /cryptoWeatherProject 
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: ./
+          vercel-args: '--prod' 
