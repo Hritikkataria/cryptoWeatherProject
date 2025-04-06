@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # CryptoWeather Dashboard
 
 A modern dashboard that combines cryptocurrency prices, weather information, and news updates in real-time. Built with Next.js, TypeScript, and Redux.
@@ -78,3 +79,6 @@ MIT License - feel free to use this project for your own purposes.
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+=======
+# cryptoWeatherProject
+>>>>>>> 753f0c516eaa49bb3c734f00a9ce7727c10213e9
