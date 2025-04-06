@@ -1,4 +1,4 @@
-name: Deploy to Vercel
+name: Deploy to GitHub Pages
 on:
   push:
     branches:
@@ -26,11 +26,13 @@ jobs:
           NEXT_PUBLIC_COINGECKO_API_KEY: ${{ secrets.NEXT_PUBLIC_COINGECKO_API_KEY }}
           NEXT_PUBLIC_NEWSDATA_API_KEY: ${{ secrets.NEXT_PUBLIC_NEWSDATA_API_KEY }}
           
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25
+      - name: Create .nojekyll file
+        run: touch out/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: ./
-          vercel-args: '--prod' 
+          folder: out
+          branch: gh-pages
+          clean: true
+          base: /cryptoWeatherProject 

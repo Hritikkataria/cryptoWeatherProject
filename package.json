@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "lint": "next lint",
-    "vercel-build": "next build"
+    "deploy": "next build && next export && touch out/.nojekyll && gh-pages -d out -b gh-pages"
   },
   "dependencies": {
     "@ai-sdk/xai": "1.2.7",
